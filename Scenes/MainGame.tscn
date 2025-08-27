@@ -1,0 +1,209 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvx8yqx4xvhod"]
+
+[ext_resource type="Script" path="res://Scripts/MainGame.gd" id="1_2q4x5"]
+
+[node name="MainGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_2q4x5")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.1, 0.1, 0.15, 1)
+
+[node name="MainContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+
+[node name="Header" type="HBoxContainer" parent="MainContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Title" type="Label" parent="MainContainer/Header"]
+layout_mode = 2
+text = "奇趣美食 - Tripo Gacha"
+theme_override_font_sizes/font_size = 24
+
+[node name="Currency" type="Label" parent="MainContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "金币: 100"
+theme_override_font_sizes/font_size = 16
+
+[node name="TrendInfo" type="Label" parent="MainContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "当前潮流: 加载中..."
+theme_override_font_sizes/font_size = 14
+
+[node name="PlayerPanel" type="HBoxContainer" parent="MainContainer"]
+layout_mode = 2
+
+[node name="Avatar" type="ColorRect" parent="MainContainer/PlayerPanel"]
+custom_minimum_size = Vector2(48, 48)
+color = Color(0.3, 0.3, 0.35, 1)
+
+[node name="PlayerInfo" type="VBoxContainer" parent="MainContainer/PlayerPanel"]
+
+[node name="Nickname" type="Label" parent="MainContainer/PlayerPanel/PlayerInfo"]
+text = "新玩家"
+
+[node name="LevelBox" type="HBoxContainer" parent="MainContainer/PlayerPanel/PlayerInfo"]
+
+[node name="Level" type="Label" parent="MainContainer/PlayerPanel/PlayerInfo/LevelBox"]
+text = "Lv.1"
+
+[node name="ExpBar" type="ProgressBar" parent="MainContainer/PlayerPanel/PlayerInfo/LevelBox"]
+size_flags_horizontal = 3
+value = 0.0
+max_value = 100.0
+
+[node name="DailyFreeDraws" type="Label" parent="MainContainer/PlayerPanel"]
+text = "今日免费: 3 次"
+
+[node name="ContentArea" type="HBoxContainer" parent="MainContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LeftPanel" type="VBoxContainer" parent="MainContainer/ContentArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="PoolsLabel" type="Label" parent="MainContainer/ContentArea/LeftPanel"]
+layout_mode = 2
+text = "卡池选择"
+theme_override_font_sizes/font_size = 18
+
+[node name="PoolButtons" type="VBoxContainer" parent="MainContainer/ContentArea/LeftPanel"]
+layout_mode = 2
+
+[node name="DrawButton" type="Button" parent="MainContainer/ContentArea/LeftPanel"]
+layout_mode = 2
+text = "抽取卡片"
+theme_override_font_sizes/font_size = 16
+
+[node name="ShopButtons" type="HBoxContainer" parent="MainContainer/ContentArea/LeftPanel"]
+
+[node name="BuyDrawBtn" type="Button" parent="MainContainer/ContentArea/LeftPanel/ShopButtons"]
+text = "购买抽卡"
+
+[node name="BuyBuffBtn" type="Button" parent="MainContainer/ContentArea/LeftPanel/ShopButtons"]
+text = "购买调料卡"
+
+[node name="CenterPanel" type="VBoxContainer" parent="MainContainer/ContentArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.35
+
+[node name="CardsLabel" type="Label" parent="MainContainer/ContentArea/CenterPanel"]
+layout_mode = 2
+text = "我的卡片"
+theme_override_font_sizes/font_size = 18
+
+[node name="CardGrid" type="GridContainer" parent="MainContainer/ContentArea/CenterPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 3
+
+[node name="SelectedCardsLabel" type="Label" parent="MainContainer/ContentArea/CenterPanel"]
+layout_mode = 2
+text = "选中的卡片"
+theme_override_font_sizes/font_size = 16
+
+[node name="SelectedCards" type="HBoxContainer" parent="MainContainer/ContentArea/CenterPanel"]
+layout_mode = 2
+
+[node name="GenerateButton" type="Button" parent="MainContainer/ContentArea/CenterPanel"]
+layout_mode = 2
+text = "生成料理"
+theme_override_font_sizes/font_size = 16
+
+[node name="RightPanel" type="HBoxContainer" parent="MainContainer/ContentArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="PreviewArea" type="VBoxContainer" parent="MainContainer/ContentArea/RightPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="RecipesArea" type="VBoxContainer" parent="MainContainer/ContentArea/RightPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="RecipesLabel" type="Label" parent="MainContainer/ContentArea/RightPanel/RecipesArea"]
+layout_mode = 2
+text = "我的料理"
+theme_override_font_sizes/font_size = 18
+
+[node name="RecipeList" type="VBoxContainer" parent="MainContainer/ContentArea/RightPanel/RecipesArea"]
+layout_mode = 2
+size_flags_vertical = 3
+visible = false
+size_flags_stretch_ratio = 1.5
+
+[node name="PreviewLabel" type="Label" parent="MainContainer/ContentArea/RightPanel/PreviewArea"]
+layout_mode = 2
+text = "3D预览（占位）"
+theme_override_font_sizes/font_size = 16
+
+[node name="ImagePreview" type="TextureRect" parent="MainContainer/ContentArea/RightPanel/PreviewArea"]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 6
+size_flags_vertical = 0
+custom_minimum_size = Vector2(200, 150)
+
+[node name="PreviewContainer" type="SubViewportContainer" parent="MainContainer/ContentArea/RightPanel/PreviewArea"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.0
+stretch = true
+
+[node name="PreviewViewport" type="SubViewport" parent="MainContainer/ContentArea/RightPanel/PreviewArea/PreviewContainer"]
+handle_input_locally = false
+render_target_update_mode = 3
+transparent_bg = false
+size = Vector2i(300, 250)
+
+[node name="WorldRoot" type="Node3D" parent="MainContainer/ContentArea/RightPanel/PreviewArea/PreviewContainer/PreviewViewport"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="MainContainer/ContentArea/RightPanel/PreviewArea/PreviewContainer/PreviewViewport/WorldRoot"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="MainContainer/ContentArea/RightPanel/PreviewArea/PreviewContainer/PreviewViewport/WorldRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3, 6)
+current = true
+fov = 55.0
+
+[node name="DishRoot" type="Node3D" parent="MainContainer/ContentArea/RightPanel/PreviewArea/PreviewContainer/PreviewViewport/WorldRoot"]
+
+[node name="StatusPanel" type="Panel" parent="MainContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="StatusLabel" type="Label" parent="MainContainer/StatusPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 5.0
+offset_right = -10.0
+offset_bottom = -5.0
+text = "准备就绪"

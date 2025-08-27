@@ -1,0 +1,62 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxuj85rlua3xv"]
+
+[ext_resource type="Script" path="res://UI/CardUI.gd" id="1_card_ui"]
+
+[node name="CardUI" type="Control"]
+custom_minimum_size = Vector2(120, 160)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_card_ui")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.2, 0.2, 0.3, 1)
+
+[node name="Border" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+color = Color(0.8, 0.8, 0.8, 1)
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+
+[node name="NameLabel" type="Label" parent="VBox"]
+layout_mode = 2
+text = "卡片名称"
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="PoolLabel" type="Label" parent="VBox"]
+layout_mode = 2
+text = "卡池"
+theme_override_font_sizes/font_size = 10
+horizontal_alignment = 1
+
+[node name="AttributesLabel" type="Label" parent="VBox"]
+layout_mode = 2
+text = "辣:0 甜:0 奇:0"
+theme_override_font_sizes/font_size = 10
+horizontal_alignment = 1
+
+[node name="PriceLabel" type="Label" parent="VBox"]
+layout_mode = 2
+text = "0金币"
+theme_override_font_sizes/font_size = 10
+horizontal_alignment = 1
