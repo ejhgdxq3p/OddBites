@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://rkt1083vwc8m"
+path.etc2="res://.godot/imported/巧克力酱球 , 奶酪球 , 抹茶粉_NormalGL_945996fc-740d-42f2-aa75-84989b28d5cc.jpg-3a4fb1ac20c9260e9950e1549df666c7.etc2.ctex"
+metadata={
+"imported_formats": ["etc2_astc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "e009665f4fdaa89bd234f8a9fa31a91b"
+}
+
+[deps]
+
+source_file="res://Data/巧克力酱球 , 奶酪球 , 抹茶粉_NormalGL_945996fc-740d-42f2-aa75-84989b28d5cc.jpg"
+dest_files=["res://.godot/imported/巧克力酱球 , 奶酪球 , 抹茶粉_NormalGL_945996fc-740d-42f2-aa75-84989b28d5cc.jpg-3a4fb1ac20c9260e9950e1549df666c7.etc2.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://Data/巧克力酱球 , 奶酪球 , 抹茶粉_NormalGL_945996fc-740d-42f2-aa75-84989b28d5cc.jpg"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

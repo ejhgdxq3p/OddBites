@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvbrec2v6xrob"
-path="res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+uid="uid://dct1c76jfbulk"
+path="res://.godot/imported/蜜糖 , 马卡龙外壳 , 巧克力酱 , 草莓酱 , 杏仁酱.png-044b4547c0e69ed7c3198e59e37f6ffd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icon.svg"
-dest_files=["res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"]
+source_file="res://Data/蜜糖 , 马卡龙外壳 , 巧克力酱 , 草莓酱 , 杏仁酱.png"
+dest_files=["res://.godot/imported/蜜糖 , 马卡龙外壳 , 巧克力酱 , 草莓酱 , 杏仁酱.png-044b4547c0e69ed7c3198e59e37f6ffd.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

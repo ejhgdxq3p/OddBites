@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://d3qlvud5vf4j5"
+path.etc2="res://.godot/imported/透明蘑菇 , 发光果冻_ORM_d7292b90-5977-4970-aedb-24357750f364.jpg-04af7c14309453b1776494bec256b1e5.etc2.ctex"
+metadata={
+"imported_formats": ["etc2_astc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "528ba1e3b00c5707a8d2ecc98dca04cb"
+}
+
+[deps]
+
+source_file="res://Data/透明蘑菇 , 发光果冻_ORM_d7292b90-5977-4970-aedb-24357750f364.jpg"
+dest_files=["res://.godot/imported/透明蘑菇 , 发光果冻_ORM_d7292b90-5977-4970-aedb-24357750f364.jpg-04af7c14309453b1776494bec256b1e5.etc2.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

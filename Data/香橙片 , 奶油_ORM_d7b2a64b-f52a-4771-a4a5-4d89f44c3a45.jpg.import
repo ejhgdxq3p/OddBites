@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://b7mcfdojrw1ck"
+path.etc2="res://.godot/imported/香橙片 , 奶油_ORM_d7b2a64b-f52a-4771-a4a5-4d89f44c3a45.jpg-e1012eb94db2ed13cb642cbdb613603a.etc2.ctex"
+metadata={
+"imported_formats": ["etc2_astc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "1bfb784a73a26c02cdaab2708f80c7c8"
+}
+
+[deps]
+
+source_file="res://Data/香橙片 , 奶油_ORM_d7b2a64b-f52a-4771-a4a5-4d89f44c3a45.jpg"
+dest_files=["res://.godot/imported/香橙片 , 奶油_ORM_d7b2a64b-f52a-4771-a4a5-4d89f44c3a45.jpg-e1012eb94db2ed13cb642cbdb613603a.etc2.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

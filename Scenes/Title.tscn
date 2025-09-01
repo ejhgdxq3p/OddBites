@@ -1,0 +1,121 @@
+[gd_scene load_steps=3 format=3 uid="uid://b267kqwq06lex"]
+
+[ext_resource type="Script" uid="uid://dn4t0gtbj8rvp" path="res://Scripts/Title.gd" id="1_z9r1y"]
+[ext_resource type="Texture2D" uid="uid://bo24mdxc88sin" path="res://Assets/Art/bkpic/hp.png" id="hp_tex"]
+
+[node name="Title" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_z9r1y")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BkTex" type="TextureRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("hp_tex")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="PreviewContainer" type="SubViewportContainer" parent="CenterContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(560, 320)
+layout_mode = 2
+size_flags_vertical = 3
+stretch = true
+
+[node name="PreviewViewport" type="SubViewport" parent="CenterContainer/VBoxContainer/PreviewContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(560, 320)
+render_target_update_mode = 0
+
+[node name="WorldRoot" type="Node3D" parent="CenterContainer/VBoxContainer/PreviewContainer/PreviewViewport"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="CenterContainer/VBoxContainer/PreviewContainer/PreviewViewport/WorldRoot"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="CenterContainer/VBoxContainer/PreviewContainer/PreviewViewport/WorldRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3, 6)
+current = true
+fov = 55.0
+
+[node name="GameTitle" type="Label" parent="CenterContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "OddBites"
+
+[node name="TopSpacer" type="Control" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+
+[node name="BigSpacer" type="Control" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="Subtitle" type="Label" parent="CenterContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Tripo Gacha 抽卡料理"
+
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "开始游戏"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "退出"
+
+[node name="PreviewOverlay" type="SubViewportContainer" parent="."]
+layout_mode = 1
+offset_right = 1100.0
+offset_bottom = 700.0
+mouse_filter = 2
+stretch = true
+
+[node name="PreviewViewport" type="SubViewport" parent="PreviewOverlay"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1100, 700)
+render_target_update_mode = 4
+
+[node name="WorldRoot" type="Node3D" parent="PreviewOverlay/PreviewViewport"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="PreviewOverlay/PreviewViewport/WorldRoot"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="PreviewOverlay/PreviewViewport/WorldRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3, 6)
+current = true
+fov = 55.0

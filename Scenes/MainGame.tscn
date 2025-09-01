@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvx8yqx4xvhod"]
+[gd_scene load_steps=4 format=3 uid="uid://bvx8yqx4xvhod"]
 
 [ext_resource type="Script" path="res://Scripts/MainGame.gd" id="1_2q4x5"]
+[ext_resource type="Script" path="res://Scripts/PoolShowcase.gd" id="1_pool_showcase"]
+[ext_resource type="Texture2D" path="res://Assets/Art/bkpic/bk.png" id="bkpic_tex"]
 
 [node name="MainGame" type="Control"]
 layout_mode = 3
@@ -16,6 +18,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0.1, 0.1, 0.15, 1)
 
+[node name="BkTex" type="TextureRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand_mode = 1
+stretch_mode = 6
+texture = ExtResource("bkpic_tex")
+
 [node name="MainContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -30,29 +41,35 @@ offset_bottom = -20.0
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Title" type="Label" parent="MainContainer/Header"]
-layout_mode = 2
-text = "奇趣美食 - Tripo Gacha"
-theme_override_font_sizes/font_size = 24
+
 
 [node name="Currency" type="Label" parent="MainContainer/Header"]
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 0
 text = "金币: 100"
 theme_override_font_sizes/font_size = 16
 
 [node name="TrendInfo" type="Label" parent="MainContainer/Header"]
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 0
 text = "当前潮流: 加载中..."
 theme_override_font_sizes/font_size = 14
+
+[node name="Spacer" type="Control" parent="MainContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BackToMenuBtn" type="Button" parent="MainContainer/Header"]
+layout_mode = 2
+text = "主菜单"
 
 [node name="PlayerPanel" type="HBoxContainer" parent="MainContainer"]
 layout_mode = 2
 
-[node name="Avatar" type="ColorRect" parent="MainContainer/PlayerPanel"]
+[node name="Avatar" type="TextureRect" parent="MainContainer/PlayerPanel"]
 custom_minimum_size = Vector2(48, 48)
-color = Color(0.3, 0.3, 0.35, 1)
+expand_mode = 1
+stretch_mode = 5
 
 [node name="PlayerInfo" type="VBoxContainer" parent="MainContainer/PlayerPanel"]
 
@@ -76,10 +93,38 @@ text = "今日免费: 3 次"
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="VSep" type="VSeparator" parent="MainContainer/ContentArea"]
+layout_mode = 2
+
 [node name="LeftPanel" type="VBoxContainer" parent="MainContainer/ContentArea"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.25
+size_flags_stretch_ratio = 0.2
+theme_override_constants/separation = 8
+
+[node name="LeftPanelBG" type="Panel" parent="MainContainer/ContentArea/LeftPanel"]
+layout_mode = 2
+
+[node name="LeftPadding" type="MarginContainer" parent="MainContainer/ContentArea/LeftPanel/LeftPanelBG"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="SwitchBar" type="HBoxContainer" parent="MainContainer/ContentArea/LeftPanel"]
+layout_mode = 2
+
+[node name="PoolTabBtn" type="Button" parent="MainContainer/ContentArea/LeftPanel/SwitchBar"]
+layout_mode = 2
+text = "卡池"
+toggle_mode = true
+button_pressed = true
+
+[node name="MyCardsTabBtn" type="Button" parent="MainContainer/ContentArea/LeftPanel/SwitchBar"]
+layout_mode = 2
+text = "我的卡片"
+toggle_mode = true
 
 [node name="PoolsLabel" type="Label" parent="MainContainer/ContentArea/LeftPanel"]
 layout_mode = 2
@@ -102,17 +147,65 @@ text = "购买抽卡"
 [node name="BuyBuffBtn" type="Button" parent="MainContainer/ContentArea/LeftPanel/ShopButtons"]
 text = "购买调料卡"
 
+[node name="MyCardsSection" type="VBoxContainer" parent="MainContainer/ContentArea/LeftPanel"]
+layout_mode = 2
+visible = false
+
+[node name="MyCardsLabel" type="Label" parent="MainContainer/ContentArea/LeftPanel/MyCardsSection"]
+layout_mode = 2
+text = "我的卡片"
+theme_override_font_sizes/font_size = 18
+
+[node name="MyCardsScroll" type="ScrollContainer" parent="MainContainer/ContentArea/LeftPanel/MyCardsSection"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MyCardsList" type="VBoxContainer" parent="MainContainer/ContentArea/LeftPanel/MyCardsSection/MyCardsScroll"]
+layout_mode = 2
+
 [node name="CenterPanel" type="VBoxContainer" parent="MainContainer/ContentArea"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.35
+size_flags_stretch_ratio = 0.18
+theme_override_constants/separation = 8
+
+[node name="CenterPanelBG" type="Panel" parent="MainContainer/ContentArea/CenterPanel"]
+layout_mode = 2
+
+[node name="CenterPadding" type="MarginContainer" parent="MainContainer/ContentArea/CenterPanel/CenterPanelBG"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PoolShowcase" type="VBoxContainer" parent="MainContainer/ContentArea/CenterPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+visible = false
+script = ExtResource("1_pool_showcase")
+
+[node name="ShowcaseLabel" type="Label" parent="MainContainer/ContentArea/CenterPanel/PoolShowcase"]
+layout_mode = 2
+text = "卡池展示"
+theme_override_font_sizes/font_size = 18
+
+[node name="PoolAnimContainer" type="Control" parent="MainContainer/ContentArea/CenterPanel/PoolShowcase"]
+layout_mode = 2
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 220)
 
 [node name="CardsLabel" type="Label" parent="MainContainer/ContentArea/CenterPanel"]
 layout_mode = 2
 text = "我的卡片"
 theme_override_font_sizes/font_size = 18
 
-[node name="CardGrid" type="GridContainer" parent="MainContainer/ContentArea/CenterPanel"]
+[node name="CardScroll" type="ScrollContainer" parent="MainContainer/ContentArea/CenterPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="CardGrid" type="GridContainer" parent="MainContainer/ContentArea/CenterPanel/CardScroll"]
 layout_mode = 2
 size_flags_vertical = 3
 columns = 3
@@ -130,31 +223,228 @@ layout_mode = 2
 text = "生成料理"
 theme_override_font_sizes/font_size = 16
 
-[node name="RightPanel" type="HBoxContainer" parent="MainContainer/ContentArea"]
+[node name="MyDishesLabel" type="Label" parent="MainContainer/ContentArea/CenterPanel"]
+layout_mode = 2
+text = "我的料理"
+theme_override_font_sizes/font_size = 18
+
+[node name="MyDishesScroll" type="ScrollContainer" parent="MainContainer/ContentArea/CenterPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="MyDishesGrid" type="GridContainer" parent="MainContainer/ContentArea/CenterPanel/MyDishesScroll"]
+layout_mode = 2
+columns = 2
+
+[node name="RightPanel" type="VBoxContainer" parent="MainContainer/ContentArea"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 
 [node name="PreviewArea" type="VBoxContainer" parent="MainContainer/ContentArea/RightPanel"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.5
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.7
 
-[node name="RecipesArea" type="VBoxContainer" parent="MainContainer/ContentArea/RightPanel"]
+[node name="RecipesDrawer" type="Control" parent="MainContainer/ContentArea/RightPanel"]
+visible = false
+layout_mode = 2
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -360.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 36.0
+
+[node name="SidePanel" type="VBoxContainer" parent="MainContainer/ContentArea"]
+layout_mode = 2
+size_flags_horizontal = 0
+custom_minimum_size = Vector2(320, 0)
+
+[node name="ServePanel" type="PanelContainer" parent="MainContainer/ContentArea/SidePanel"]
+layout_mode = 2
+size_flags_horizontal = 0
+custom_minimum_size = Vector2(320, 0)
+
+[node name="ServeContent" type="VBoxContainer" parent="MainContainer/ContentArea/SidePanel/ServePanel"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_minimum_size = Vector2(320, 0)
+
+[node name="ServeTitle" type="Label" parent="MainContainer/ContentArea/SidePanel/ServePanel/ServeContent"]
+layout_mode = 2
+text = "出餐"
+theme_override_font_sizes/font_size = 18
+
+[node name="ServeName" type="Label" parent="MainContainer/ContentArea/SidePanel/ServePanel/ServeContent"]
+layout_mode = 2
+text = "未选择料理"
+visible = false
+
+[node name="ServeAttrs" type="Label" parent="MainContainer/ContentArea/SidePanel/ServePanel/ServeContent"]
+layout_mode = 2
+text = "辣0 甜0 奇0 | 成本0"
+visible = false
+
+[node name="ServeTrendBase" type="Label" parent="MainContainer/ContentArea/SidePanel/ServePanel/ServeContent"]
+layout_mode = 2
+text = "潮流基线: 无"
+visible = false
+
+[node name="ServeTrendBonus" type="Label" parent="MainContainer/ContentArea/SidePanel/ServePanel/ServeContent"]
+layout_mode = 2
+text = "加成: x1.0"
+visible = false
+
+[node name="ServePriceBox" type="HBoxContainer" parent="MainContainer/ContentArea/SidePanel/ServePanel/ServeContent"]
+layout_mode = 2
+visible = false
+
+[node name="ServeSuggestLabel" type="Label" parent="MainContainer/ContentArea/SidePanel/ServePanel/ServeContent/ServePriceBox"]
+layout_mode = 2
+text = "建议售价:"
+
+[node name="ServeSuggest" type="LineEdit" parent="MainContainer/ContentArea/SidePanel/ServePanel/ServeContent/ServePriceBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(100, 0)
+placeholder_text = "0"
+
+[node name="ServeEditLabel" type="Label" parent="MainContainer/ContentArea/SidePanel/ServePanel/ServeContent/ServePriceBox"]
+layout_mode = 2
+text = "实际售价:"
+
+[node name="ServePriceEdit" type="LineEdit" parent="MainContainer/ContentArea/SidePanel/ServePanel/ServeContent/ServePriceBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(100, 0)
+placeholder_text = "0"
+
+[node name="ServeTags" type="FlowContainer" parent="MainContainer/ContentArea/SidePanel/ServePanel/ServeContent"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_minimum_size = Vector2(320, 0)
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
+
+[node name="ServeSummary" type="Label" parent="MainContainer/ContentArea/SidePanel/ServePanel/ServeContent"]
+layout_mode = 2
+text = "合计: 辣0 甜0 奇0 | 成本0"
+
+[node name="ComboNameBox" type="HBoxContainer" parent="MainContainer/ContentArea/SidePanel/ServePanel/ServeContent"]
+layout_mode = 2
+visible = false
+
+[node name="ComboNameLabel" type="Label" parent="MainContainer/ContentArea/SidePanel/ServePanel/ServeContent/ComboNameBox"]
+layout_mode = 2
+text = "套餐名称:"
+
+[node name="ComboNameEdit" type="LineEdit" parent="MainContainer/ContentArea/SidePanel/ServePanel/ServeContent/ComboNameBox"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.5
+placeholder_text = "输入套餐名称"
 
-[node name="RecipesLabel" type="Label" parent="MainContainer/ContentArea/RightPanel/RecipesArea"]
+[node name="OnlineMealsLabel" type="Label" parent="MainContainer/ContentArea/SidePanel/ServePanel/ServeContent"]
+layout_mode = 2
+text = "我的套餐 (0/3)"
+theme_override_font_sizes/font_size = 14
+
+[node name="OnlineMealsContainer" type="VBoxContainer" parent="MainContainer/ContentArea/SidePanel/ServePanel/ServeContent"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_minimum_size = Vector2(320, 0)
+
+[node name="ServeActions" type="HBoxContainer" parent="MainContainer/ContentArea/SidePanel/ServePanel/ServeContent"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_minimum_size = Vector2(320, 0)
+
+[node name="ServeButton" type="Button" parent="MainContainer/ContentArea/SidePanel/ServePanel/ServeContent/ServeActions"]
+layout_mode = 2
+text = "上线售卖"
+size_flags_horizontal = 3
+
+[node name="ConfirmServeBtn" type="Button" parent="MainContainer/ContentArea/SidePanel/ServePanel/ServeContent/ServeActions"]
+layout_mode = 2
+text = "确认上线"
+size_flags_horizontal = 3
+visible = false
+
+[node name="ClearServeBtn" type="Button" parent="MainContainer/ContentArea/SidePanel/ServePanel/ServeContent/ServeActions"]
+layout_mode = 2
+text = "清空选择"
+size_flags_horizontal = 3
+
+[node name="BroadcastPanel" type="PanelContainer" parent="MainContainer/ContentArea/SidePanel"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+custom_minimum_size = Vector2(320, 200)
+
+[node name="BroadcastContent" type="VBoxContainer" parent="MainContainer/ContentArea/SidePanel/BroadcastPanel"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+custom_minimum_size = Vector2(320, 0)
+
+[node name="BroadcastTitle" type="Label" parent="MainContainer/ContentArea/SidePanel/BroadcastPanel/BroadcastContent"]
+layout_mode = 2
+text = "广播"
+theme_override_font_sizes/font_size = 18
+
+[node name="BroadcastTrend" type="Label" parent="MainContainer/ContentArea/SidePanel/BroadcastPanel/BroadcastContent"]
+layout_mode = 2
+text = "潮流: 加载中..."
+theme_override_font_sizes/font_size = 14
+
+[node name="BroadcastScroll" type="ScrollContainer" parent="MainContainer/ContentArea/SidePanel/BroadcastPanel/BroadcastContent"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+custom_minimum_size = Vector2(320, 0)
+
+[node name="BroadcastLog" type="RichTextLabel" parent="MainContainer/ContentArea/SidePanel/BroadcastPanel/BroadcastContent/BroadcastScroll"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+custom_minimum_size = Vector2(320, 0)
+fit_content = true
+scroll_active = true
+bbcode_enabled = true
+
+[node name="DrawerRoot" type="VBoxContainer" parent="MainContainer/ContentArea/RightPanel/RecipesDrawer"]
+layout_mode = 2
+
+[node name="DrawerHandle" type="Button" parent="MainContainer/ContentArea/RightPanel/RecipesDrawer/DrawerRoot"]
+layout_mode = 2
+custom_minimum_size = Vector2(360, 36)
+text = "我的料理"
+
+[node name="DrawerPanel" type="PanelContainer" parent="MainContainer/ContentArea/RightPanel/RecipesDrawer/DrawerRoot"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(360, 0)
+custom_minimum_size = Vector2(320, 0)
+
+[node name="Content" type="VBoxContainer" parent="MainContainer/ContentArea/RightPanel/RecipesDrawer/DrawerRoot/DrawerPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RecipesLabel" type="Label" parent="MainContainer/ContentArea/RightPanel/RecipesDrawer/DrawerRoot/DrawerPanel/Content"]
 layout_mode = 2
 text = "我的料理"
 theme_override_font_sizes/font_size = 18
 
-[node name="RecipeList" type="VBoxContainer" parent="MainContainer/ContentArea/RightPanel/RecipesArea"]
+[node name="RecipeList" type="VBoxContainer" parent="MainContainer/ContentArea/RightPanel/RecipesDrawer/DrawerRoot/DrawerPanel/Content"]
 layout_mode = 2
 size_flags_vertical = 3
-visible = false
-size_flags_stretch_ratio = 1.5
 
 [node name="PreviewLabel" type="Label" parent="MainContainer/ContentArea/RightPanel/PreviewArea"]
 layout_mode = 2

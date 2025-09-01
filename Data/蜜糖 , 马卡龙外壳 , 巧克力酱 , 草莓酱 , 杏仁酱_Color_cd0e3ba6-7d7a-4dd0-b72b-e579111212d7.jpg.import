@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://brdrll46vhmlq"
+path.etc2="res://.godot/imported/蜜糖 , 马卡龙外壳 , 巧克力酱 , 草莓酱 , 杏仁酱_Color_cd0e3ba6-7d7a-4dd0-b72b-e579111212d7.jpg-6c85dbcd66de064b59da14411760498e.etc2.ctex"
+metadata={
+"imported_formats": ["etc2_astc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "f59768f7aff23558ea9ad07b73e787cf"
+}
+
+[deps]
+
+source_file="res://Data/蜜糖 , 马卡龙外壳 , 巧克力酱 , 草莓酱 , 杏仁酱_Color_cd0e3ba6-7d7a-4dd0-b72b-e579111212d7.jpg"
+dest_files=["res://.godot/imported/蜜糖 , 马卡龙外壳 , 巧克力酱 , 草莓酱 , 杏仁酱_Color_cd0e3ba6-7d7a-4dd0-b72b-e579111212d7.jpg-6c85dbcd66de064b59da14411760498e.etc2.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

@@ -1,0 +1,115 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Archive.gd" id="1_v6j1y"]
+[ext_resource type="Texture2D" path="res://Assets/Art/bkpic/bk.png" id="bkpic_tex"]
+
+[node name="Archive" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_v6j1y")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.09, 0.09, 0.13, 1)
+
+[node name="BkTex" type="TextureRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand_mode = 1
+stretch_mode = 6
+texture = ExtResource("bkpic_tex")
+
+[node name="MainContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+
+[node name="LeftPanel" type="VBoxContainer" parent="MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+
+[node name="RightPanel" type="VBoxContainer" parent="MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+
+[node name="Title" type="Label" parent="MainContainer/LeftPanel"]
+layout_mode = 2
+text = "仓库 / 回忆"
+theme_override_font_sizes/font_size = 24
+
+[node name="Toolbar" type="HBoxContainer" parent="MainContainer/LeftPanel"]
+layout_mode = 2
+
+[node name="RefreshButton" type="Button" parent="MainContainer/LeftPanel/Toolbar"]
+layout_mode = 2
+text = "刷新"
+
+[node name="OpenFolderButton" type="Button" parent="MainContainer/LeftPanel/Toolbar"]
+layout_mode = 2
+text = "打开文件夹"
+
+[node name="Scroll" type="ScrollContainer" parent="MainContainer/LeftPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ThumbGrid" type="GridContainer" parent="MainContainer/LeftPanel/Scroll"]
+layout_mode = 2
+columns = 2
+
+[node name="BackButton" type="Button" parent="MainContainer/LeftPanel"]
+layout_mode = 2
+text = "返回主菜单"
+
+[node name="PreviewTitle" type="Label" parent="MainContainer/RightPanel"]
+layout_mode = 2
+text = "3D 预览"
+theme_override_font_sizes/font_size = 18
+
+[node name="PreviewContainer" type="SubViewportContainer" parent="MainContainer/RightPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+stretch = true
+custom_minimum_size = Vector2(640, 420)
+
+[node name="PreviewViewport" type="SubViewport" parent="MainContainer/RightPanel/PreviewContainer"]
+handle_input_locally = false
+render_target_update_mode = 3
+transparent_bg = true
+size = Vector2i(900, 600)
+
+[node name="WorldRoot" type="Node3D" parent="MainContainer/RightPanel/PreviewContainer/PreviewViewport"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="MainContainer/RightPanel/PreviewContainer/PreviewViewport/WorldRoot"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="MainContainer/RightPanel/PreviewContainer/PreviewViewport/WorldRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3, 6)
+current = true
+fov = 55.0
+
+[node name="DishRoot" type="Node3D" parent="MainContainer/RightPanel/PreviewContainer/PreviewViewport/WorldRoot"]
+
+[node name="InfoPanel" type="VBoxContainer" parent="MainContainer/RightPanel"]
+layout_mode = 2
+
+[node name="ModelName" type="Label" parent="MainContainer/RightPanel/InfoPanel"]
+layout_mode = 2
+text = "选择一个模型查看"
+theme_override_font_sizes/font_size = 14
+
+
