@@ -45,7 +45,7 @@
 - **CardData**: 卡片数据结构，包含属性和稀有度计算
 - **TripoAPI**: 集成Tripo 3D生成API
 - **AvatarManager**: DiceBear头像管理器，处理头像生成和缓存
-- **MainGame**: 主游戏界面控制器
+- **MainGame**: 主游戏界面控制
 
 ## 界面布局与交互（最新）
 
