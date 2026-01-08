@@ -1,0 +1,84 @@
+name: Publish to itch.io
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+concurrency:
+  group: itch-publish-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  GODOT_VERSION: "4.4"
+  GODOT_RELEASE_TAG: "4.4-stable"
+  EXPORT_PRESET: "Windows Desktop"
+
+jobs:
+  export-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Godot ${{ env.GODOT_RELEASE_TAG }} (editor) and export templates
+        run: |
+          set -e
+          mkdir -p "$HOME/bin"
+          cd "$HOME"
+
+          # Godot editor (用于 headless 导出)
+          curl -sSL -o godot.zip "https://github.com/godotengine/godot/releases/download/${GODOT_RELEASE_TAG}/Godot_v${GODOT_RELEASE_TAG}_linux.x86_64.zip"
+          unzip -o godot.zip -d "$HOME/bin"
+          mv "$HOME/bin/Godot_v${GODOT_RELEASE_TAG}_linux.x86_64" "$HOME/bin/godot"
+          chmod +x "$HOME/bin/godot"
+          echo "$HOME/bin" >> "$GITHUB_PATH"
+
+          # Export templates
+          mkdir -p "$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable"
+          curl -sSL -o templates.tpz "https://github.com/godotengine/godot/releases/download/${GODOT_RELEASE_TAG}/Godot_v${GODOT_RELEASE_TAG}_export_templates.tpz"
+          unzip -o templates.tpz -d "$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable"
+
+      - name: Export (Windows ARM64 from preset "${{ env.EXPORT_PRESET }}")
+        run: |
+          set -e
+          mkdir -p build/windows
+          godot --headless --path . --export-release "${EXPORT_PRESET}" "build/windows/OddBites.exe"
+          ls -lah build/windows
+
+      - name: Upload build artifact (for debugging / download)
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-build
+          path: build/windows
+
+      - name: Install itch.io butler
+        run: |
+          set -e
+          mkdir -p "$HOME/bin"
+          cd "$HOME"
+          curl -sSL -o butler.zip "https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default"
+          unzip -o butler.zip -d "$HOME/bin"
+          chmod +x "$HOME/bin/butler"
+          echo "$HOME/bin" >> "$GITHUB_PATH"
+          butler -V
+
+      - name: Push to itch.io
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+          ITCH_USER: ${{ secrets.ITCH_USER }}
+          ITCH_GAME: ${{ secrets.ITCH_GAME }}
+          ITCH_CHANNEL: ${{ secrets.ITCH_CHANNEL }}
+        run: |
+          set -e
+          if [ -z "$BUTLER_API_KEY" ]; then
+            echo "Missing secret BUTLER_API_KEY"; exit 1
+          fi
+          if [ -z "$ITCH_USER" ] || [ -z "$ITCH_GAME" ]; then
+            echo "Missing secrets ITCH_USER or ITCH_GAME"; exit 1
+          fi
+          CHANNEL="${ITCH_CHANNEL:-windows-arm64}"
+          echo "Pushing to ${ITCH_USER}/${ITCH_GAME}:${CHANNEL}"
+          butler push "build/windows" "${ITCH_USER}/${ITCH_GAME}:${CHANNEL}"
+
