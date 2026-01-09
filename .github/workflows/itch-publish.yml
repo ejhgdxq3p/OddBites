@@ -45,13 +45,6 @@ jobs:
           mv templates/* "$TEMPLATES_DIR/"
           ls -la "$TEMPLATES_DIR/"
 
-      - name: Patch export preset to x86_64
-        run: |
-          # 把 arm64 改成 x86_64，适配大多数 Windows 用户
-          sed -i 's/binary_format\/architecture="arm64"/binary_format\/architecture="x86_64"/g' export_presets.cfg
-          sed -i 's/export_path="\.\.\/OddBites_arm\.exe"/export_path="build\/windows\/OddBites.exe"/g' export_presets.cfg
-          cat export_presets.cfg
-
       - name: Export (Windows x86_64 from preset "${{ env.EXPORT_PRESET }}")
         run: |
           set -e
