@@ -37,12 +37,22 @@ jobs:
           chmod +x "$HOME/bin/godot"
           echo "$HOME/bin" >> "$GITHUB_PATH"
 
-          # Export templates
-          mkdir -p "$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable"
+          # Export templates - 注意 tpz 解压后有 templates/ 子目录
+          TEMPLATES_DIR="$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable"
+          mkdir -p "$TEMPLATES_DIR"
           curl -sSL -o templates.tpz "https://github.com/godotengine/godot/releases/download/${GODOT_RELEASE_TAG}/Godot_v${GODOT_RELEASE_TAG}_export_templates.tpz"
-          unzip -o templates.tpz -d "$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable"
+          unzip -o templates.tpz
+          mv templates/* "$TEMPLATES_DIR/"
+          ls -la "$TEMPLATES_DIR/"
 
-      - name: Export (Windows ARM64 from preset "${{ env.EXPORT_PRESET }}")
+      - name: Patch export preset to x86_64
+        run: |
+          # 把 arm64 改成 x86_64，适配大多数 Windows 用户
+          sed -i 's/binary_format\/architecture="arm64"/binary_format\/architecture="x86_64"/g' export_presets.cfg
+          sed -i 's/export_path="\.\.\/OddBites_arm\.exe"/export_path="build\/windows\/OddBites.exe"/g' export_presets.cfg
+          cat export_presets.cfg
+
+      - name: Export (Windows x86_64 from preset "${{ env.EXPORT_PRESET }}")
         run: |
           set -e
           mkdir -p build/windows
@@ -80,7 +90,7 @@ jobs:
           if [ -z "$ITCH_USER" ] || [ -z "$ITCH_GAME" ]; then
             echo "Missing secrets ITCH_USER or ITCH_GAME"; exit 1
           fi
-          CHANNEL="${ITCH_CHANNEL:-windows-arm64}"
+          CHANNEL="${ITCH_CHANNEL:-windows}"
           echo "Pushing to ${ITCH_USER}/${ITCH_GAME}:${CHANNEL}"
           butler push "build/windows" "${ITCH_USER}/${ITCH_GAME}:${CHANNEL}"
 
